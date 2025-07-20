@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mesajlaşma Uygulaması</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.4/socket.io.min.js"></script>
+</head>
+<body>
+    <!-- Login Container -->
+    <div id="loginContainer" class="form-container">
+        <h2>Giriş Yap</h2>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="loginEmail">E-posta:</label>
+                <input type="email" id="loginEmail" required>
+            </div>
+            <div class="form-group">
+                <label for="loginPassword">Parola:</label>
+                <input type="password" id="loginPassword" required>
+            </div>
+            <button type="submit">Giriş Yap</button>
+            <p class="form-footer">
+                Hesabınız yok mu? 
+                <a href="#" data-action="show-register">Kayıt olun</a>
+            </p>
+        </form>
+    </div>
+
+    <!-- Register Container -->
+    <div id="registerContainer" class="form-container" style="display:none;">
+        <h2>Kayıt Ol</h2>
+        <form id="registerForm">
+            <div class="form-group">
+                <label for="firstName">Ad:</label>
+                <input type="text" id="firstName" required>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Soyad:</label>
+                <input type="text" id="lastName" required>
+            </div>
+            <div class="form-group">
+                <label for="email">E-posta:</label>
+                <input type="email" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Telefon:</label>
+                <input type="tel" id="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Parola:</label>
+                <input type="password" id="password" required>
+            </div>
+            <button type="submit">Kayıt Ol</button>
+            <p class="form-footer">
+                Hesabınız var mı? 
+                <a href="#" data-action="show-login">Giriş yapın</a>
+            </p>
+        </form>
+    </div>
+
+    <!-- Main Chat Container -->
+    <div class="main" id="main-container" style="display:none;">
+        <nav class="navbar">
+            <div class="navbar-brand">Sohbet Sistemi</div>
+            <div class="navbar-user">
+                <span id="current-user-name"></span>
+                <button class="btn-logout" onclick="logout()">Çıkış Yap</button>
+            </div>
+        </nav>
+
+        <div class="chat-container">
+            <div class="left-sidebar">
+                <div class="users-section">
+                    <div class="users-header">
+                        <h3>Kayıtlı Kullanıcılar</h3>
+                    </div>
+                    <div class="users-list" id="users-list"></div>
+                </div>
+                <div class="broadcast-section">
+                    <h3>Yayın Mesajı</h3>
+                    <form class="broadcast-form" id="broadcast-form">
+                        <input type="text" id="broadcast-input" placeholder="Tüm kullanıcılara mesaj..." required>
+                        <button type="submit">Gönder</button>
+                    </form>
+                </div>
+            </div>
+
+           <!-- Message Container Section -->
+<div class="chat-section">
+    <div class="chat-header">
+        <h3 id="chat-header">Sohbet</h3>
+    </div>
+    <div class="message-wrapper">
+        <div class="message-container" id="message-container">
+            <!-- Message bubbles will be dynamically added here -->
+            <div class="message message-sent">
+                <div class="message-content">
+                    <p class="message-text">Message text here</p>
+                    <div class="message-meta">
+                        <span class="message-time">12:30</span>
+                        <span class="message-status">✓✓</span>
+                    </div>
+                </div>
+            </div>
+            <div class="message message-received">
+                <div class="message-content">
+                    <p class="message-text">Received message here</p>
+                    <div class="message-meta">
+                        <span class="message-time">12:31</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <form class="message-form" id="message-form">
+        <input type="text" id="message-input" placeholder="Mesajınızı yazın..." required>
+        <button type="submit">Gönder</button>
+    </form>
+</div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
